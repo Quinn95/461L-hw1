@@ -11,13 +11,15 @@ import com.google.appengine.api.users.User;
 public class BlogPost implements Comparable<BlogPost> {
 	@Id Long id;
 	User user;	
+	String title;
 	String content;
 	Date date;
 	
 	private BlogPost() {}
 	
-	public BlogPost(User user, String content){
+	public BlogPost(User user, String title, String content){
 		this.user = user;
+		this.title = title;
 		this.content = content;
 		date = new Date();
 	}
@@ -34,6 +36,10 @@ public class BlogPost implements Comparable<BlogPost> {
 	
 	public User getUser(){
 		return user;
+	}
+	
+	public String getTitle(){
+		return title;
 	}
 
 	public String getContent(){
