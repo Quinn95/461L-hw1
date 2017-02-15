@@ -5,14 +5,14 @@ xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
 http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 	<servlet>
-		<servlet-name>homework</servlet-name>
-		<servlet-class>com.homework.blog.HomeworkServlet</servlet-class>
+		<servlet-name>bloghome</servlet-name>
+		<servlet-class>com.homework.blog.BlogHomeServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>homework</servlet-name>
-		<url-pattern>/homework</url-pattern>
+		<servlet-name>bloghome</servlet-name>
+		<url-pattern>/bloghome</url-pattern>
 	</servlet-mapping>
 	<welcome-file-list>
-		<welcome-file>index.html</welcome-file>
+		<welcome-file>home.jsp</welcome-file>
 	</welcome-file-list>
 </web-app>
