@@ -42,8 +42,8 @@
 <table>
 <c:forEach var="post" items="${posts}">
   <tr style="border: 1px solid black;">
-    <td><p>title: ${fn:escapeXml(post.properties.title)}</p></td>
-    <td><p>${fn:escapeXml(post.properties.content)}</p></td>
+    <td style="border: 1px solid black;"><a href="detail.jsp?name=${post.properties.title}">title: ${fn:escapeXml(post.properties.title)}</a></td>
+    <td style="border: 1px solid black;"><p>${fn:escapeXml(post.properties.content)}</p></td>
   </tr>
 </c:forEach>
 </table>
