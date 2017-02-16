@@ -10,9 +10,6 @@ import com.googlecode.objectify.annotation.Id;
 
 @Entity
 public class BlogPost implements Comparable<BlogPost> {
-	static{
-		ObjectifyService.register(BlogPost.class);
-	}
 	@Id Long id;
 	User user;	
 	String title;

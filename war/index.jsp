@@ -24,28 +24,28 @@
 
 <%@ page import="com.homework.blog.BlogPost" %>
 
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 
-<table>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+
+
+
 <%
 	DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
 	
-	Query query = new Query("BlogPost").addSort("date", Query.SortDirection.DESCENDING);
+	Query query = new Query("BlogPost");//.addSort("date", Query.SortDirection.DESCENDING);
 
 	List<Entity> posts = datastore.prepare(query).asList(FetchOptions.Builder.withLimit(5));
-	
-	for (Entity post : posts){
-		pageContext.setAttribute("post_user", 
-				post.getProperty("user"));
-		pageContext.setAttribute("post_title",
-				post.getProperty("title"));
-		pageContext.setAttribute("post_body",
-				post.getProperty("body"));
+	pageContext.setAttribute("posts", posts);
 %>
-	<tr><td><p><b>$(fn:escapeXml(post_user"))</b>
-	<br />$(fn:escapeXml(post_title))<br />
-	$(fn:escapeXml(post_body))</p></td></tr>
-<% } %>
+<table>
+<c:forEach var="post" items="${posts}">
+  <tr style="border: 1px solid black;">
+    <td><p>title: ${fn:escapeXml(post.properties.title)}</p></td>
+    <td><p>${fn:escapeXml(post.properties.content)}</p></td>
+  </tr>
+</c:forEach>
 </table>
 
 <form action="/newblogpost" method="post">
