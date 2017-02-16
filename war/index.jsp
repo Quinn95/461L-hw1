@@ -22,6 +22,8 @@
 
 <%@ page import="com.google.appengine.api.datastore.KeyFactory" %>
 
+<%@ page import="com.homework.blog.BlogPost" %>
+
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <table>
@@ -45,3 +47,10 @@
 	$(fn:escapeXml(post_body))</p></td></tr>
 <% } %>
 </table>
+
+<form action="/newblogpost" method="post">
+	<div><input type="text" name="post_title" value="Title"/></div>
+	<div><textarea name="post_body" rows="3" cols="60"></textarea></div>
+	<div><input type="submit" value="Post"/></div>
+
+</form>

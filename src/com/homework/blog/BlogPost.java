@@ -2,13 +2,17 @@ package com.homework.blog;
 
 import java.util.Date;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-
 import com.google.appengine.api.users.User;
+import com.googlecode.objectify.ObjectifyService;
+import com.googlecode.objectify.annotation.Entity;
+
+import com.googlecode.objectify.annotation.Id;
 
 @Entity
 public class BlogPost implements Comparable<BlogPost> {
+	static{
+		ObjectifyService.register(BlogPost.class);
+	}
 	@Id Long id;
 	User user;	
 	String title;

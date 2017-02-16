@@ -27,4 +27,19 @@ public class NewBlogPostServlet extends HttpServlet {
 	static{
 		ObjectifyService.register(BlogPost.class);
 	}
+	
+	public void doPost(HttpServletRequest req, HttpServletResponse resp)
+				throws IOException{
+		UserService userService = UserServiceFactory.getUserService();
+		User user = userService.getCurrentUser();
+		
+		String title = req.getParameter("post_title");
+		String body = req.getParameter("post_body");
+		
+		BlogPost post = new BlogPost(user, title, body);
+		
+		ofy().save().entities(post).now();
+		
+		resp.sendRedirect("/detail.jsp?name=" + title);
+	}
 }
