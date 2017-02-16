@@ -1,5 +1,7 @@
 package com.homework.blog;
 
+import com.google.appengine.api.datastore.Key;
+import com.google.appengine.api.datastore.KeyFactory;
 import com.google.appengine.api.users.User;
 
 import com.google.appengine.api.users.UserService;
@@ -33,13 +35,15 @@ public class NewBlogPostServlet extends HttpServlet {
 		UserService userService = UserServiceFactory.getUserService();
 		User user = userService.getCurrentUser();
 		
+		
 		String title = req.getParameter("post_title");
+		Key postKey = KeyFactory.createKey("BlogPost", title);
+		System.out.println(postKey);
 		String body = req.getParameter("post_body");
 		
 		BlogPost post = new BlogPost(user, title, body);
 		
 		ofy().save().entities(post).now();
-		
 		resp.sendRedirect("/detail.jsp?name=" + title);
 	}
 }

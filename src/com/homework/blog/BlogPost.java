@@ -10,9 +10,9 @@ import com.googlecode.objectify.annotation.Id;
 
 @Entity
 public class BlogPost implements Comparable<BlogPost> {
-	@Id Long id;
+	//@Id Long id;
 	User user;	
-	String title;
+	@Id String title;
 	String content;
 	Date date;
 	
