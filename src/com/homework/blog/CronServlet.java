@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.*;
+import com.sendgrid.*;
 
 @SuppressWarnings("serial")
 public class GAEJCronServlet extends HttpServlet {
@@ -14,6 +15,14 @@ public class GAEJCronServlet extends HttpServlet {
 
 		//Put your logic here
 		//BEGIN
+		// set credentials
+		Sendgrid mail = new Sendgrid("<sendgrid_username>","<sendgrid_password>");
+
+		// set email data
+		mail.setTo("foo@bar.com").setFrom("me@bar.com").setSubject("Subject goes here").setText("Hello World!").setHtml("<strong>Hello World!</strong>");
+
+		// send your message
+		mail.send();
 		//END
 		
 		} catch (Exception ex) {
