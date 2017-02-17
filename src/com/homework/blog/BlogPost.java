@@ -16,7 +16,7 @@ public class BlogPost implements Comparable<BlogPost> {
 	String title;
 	String content;
 	@Index Date date;
-	
+	//test
 	private BlogPost() {}
 	
 	public BlogPost(User user, String title, String content){
