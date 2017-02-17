@@ -14,7 +14,7 @@ public class CronServlet extends HttpServlet {
 		try { _logger.info("Cron Job has been executed");
 
 		/* set credentials */
-		Sendgrid mail = new Sendgrid("atchisonbrent","m%JQWXl2");
+		Sendgrid mail = new Sendgrid("username","password");
 		
 		/* Loop through subscriber list, sending emails */
 		for (int i = 0; i < numSubscribers; i++) {
