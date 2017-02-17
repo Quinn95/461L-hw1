@@ -37,13 +37,25 @@ public class NewBlogPostServlet extends HttpServlet {
 		
 		
 		String title = req.getParameter("post_title");
-		Key postKey = KeyFactory.createKey("BlogPost", title);
-		System.out.println(postKey);
+		if(ofy().load().type(BlogPost.class).filter("title", title).list().size() != 0){
+			resp.sendRedirect("/index.jsp");
+			return;
+		}
+		//Key postKey = KeyFactory.createKey("BlogPost", title);
+		//System.out.println(postKey);
 		String body = req.getParameter("post_body");
+		
 		
 		BlogPost post = new BlogPost(user, title, body);
 		
+		
 		ofy().save().entities(post).now();
+		try {
+			Thread.sleep(1500);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		resp.sendRedirect("/detail.jsp?name=" + title);
 	}
 }
