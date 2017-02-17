@@ -23,6 +23,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
+import org.apache.commons.lang3.StringEscapeUtils;
+
+
 
 @SuppressWarnings("serial")
 public class NewBlogPostServlet extends HttpServlet {
@@ -44,18 +47,24 @@ public class NewBlogPostServlet extends HttpServlet {
 		//Key postKey = KeyFactory.createKey("BlogPost", title);
 		//System.out.println(postKey);
 		String body = req.getParameter("post_body");
+		if(body.length() > 450){
+			body = body.substring(0, 450);
+		}
+		String escaped = StringEscapeUtils.escapeHtml4(body);
+		escaped = escaped.replace("\n", "<br />");
 		
-		
-		BlogPost post = new BlogPost(user, title, body);
+		BlogPost post = new BlogPost(user, title, escaped);
 		
 		
 		ofy().save().entities(post).now();
+		/*
 		try {
 			Thread.sleep(1500);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		resp.sendRedirect("/detail.jsp?name=" + title);
+		*/
+		resp.sendRedirect("/index.jsp");
 	}
 }

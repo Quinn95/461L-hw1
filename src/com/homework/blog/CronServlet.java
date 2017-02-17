@@ -14,9 +14,10 @@ public class CronServlet extends HttpServlet {
 		try { _logger.info("Cron Job has been executed");
 
 		/* set credentials */
-		Sendgrid mail = new Sendgrid("atchisonbrent","m%JQWXl2");
-		
+		//SendGrid mail = new SendGrid("atchisonbrent","m%JQWXl2");
+		SendGrid mail = new SendGrid("atchisonbrent");
 		/* Loop through subscriber list, sending emails */
+		int numSubscribers = 1;
 		for (int i = 0; i < numSubscribers; i++) {
 			/* Set email data */
 			mail.setTo(subscriber.getEmail()).setFrom("homeworkBlog@gmail.com").setSubject("Recent Posts on Blog").setText(blog.getRecentPosts()).setHtml("<strong>Hello World!</strong>");
