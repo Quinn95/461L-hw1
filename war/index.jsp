@@ -29,6 +29,25 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Bootstrap 101 Template</title>
+
+    <!-- Bootstrap -->
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
 
 
 <%
@@ -63,20 +82,41 @@
 	pageContext.setAttribute("posts", posts);
 	System.out.println(posts);
 %>
-<table>
+
+<div class="container">
+
+  <div class="blog-header">
+        <h1 class="blog-title">All posts</h1>
+      </div>
+
+      <div class="row">
+
+      <div class="col-sm-8 blog-main">
+
+
 <c:forEach var="post" items="${posts}">
-  <tr style="border: 1px solid black;">
-    <td style="border: 1px solid black;"><a href="detail.jsp?name=${post.properties.title}">title: ${fn:escapeXml(post.properties.title)}</a></td>
-    <td style="border: 1px solid black;"><p>${fn:escapeXml(post.properties.content)}</p></td>
-  </tr>
+    <div class="blog-post" style="background-color: #ffffbb;">
+    <h2 class="blog-post-title">${fn:escapeXml(post.properties.title)}</h2>
+    <p class="blog-post-meta">${post.properties.date} by ${post.properties.user}</p><br />
+    <p>${fn:escapeXml(post.properties.content)}</p>
+    <% //<a href="detail.jsp?name=${post.properties.title}">continue reading</a> %>
+    </div>
 </c:forEach>
-</table>
+</div>
+</div>
 
 <% if(user != null){ %>
 <form action="/newblogpost" method="post">
 	<div><input type="text" name="post_title" value="Title"/></div>
 	<div><textarea name="post_body" rows="3" cols="60"></textarea></div>
 	<div><input type="submit" value="Post"/></div>
+	</form>
 <% }else{ %>
-<p>log in to make a post</p> <% } %>
-</form>
+<p>log in to make a post</p><% } %>
+	</div>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+
