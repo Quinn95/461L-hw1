@@ -24,6 +24,8 @@
 
 <%@ page import="com.homework.blog.BlogPost" %>
 
+<%@ page import="java.util.Collections" %>
+
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -76,11 +78,10 @@
 <%
 	DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
 	
-	Query query = new Query("BlogPost");//.addSort("date", Query.SortDirection.DESCENDING);
+	Query query = new Query("BlogPost").addSort("date", Query.SortDirection.DESCENDING);
 
-	List<Entity> posts = datastore.prepare(query).asList(FetchOptions.Builder.withLimit(5));
+	List<Entity> posts = datastore.prepare(query).asList(FetchOptions.Builder.withLimit(Integer.MAX_VALUE));
 	pageContext.setAttribute("posts", posts);
-	System.out.println(posts);
 %>
 
 <div class="container">
@@ -98,7 +99,7 @@
     <div class="blog-post" style="background-color: #ffffbb;">
     <h2 class="blog-post-title">${fn:escapeXml(post.properties.title)}</h2>
     <p class="blog-post-meta">${post.properties.date} by ${post.properties.user}</p><br />
-    <p>${fn:escapeXml(post.properties.content)}</p>
+    <p>${post.properties.content}</p>
     <% //<a href="detail.jsp?name=${post.properties.title}">continue reading</a> %>
     </div>
 </c:forEach>
