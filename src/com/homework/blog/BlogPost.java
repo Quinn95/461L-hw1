@@ -13,9 +13,9 @@ import com.googlecode.objectify.annotation.Index;
 public class BlogPost implements Comparable<BlogPost> {
 	@Id Long id;
 	User user;	
-	@Index String title;
+	String title;
 	String content;
-	Date date;
+	@Index Date date;
 	
 	private BlogPost() {}
 	
@@ -46,5 +46,9 @@ public class BlogPost implements Comparable<BlogPost> {
 
 	public String getContent(){
 		return content;
+	}
+	
+	public Date getDate(){
+		return date;
 	}
 }
