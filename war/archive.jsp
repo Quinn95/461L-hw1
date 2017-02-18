@@ -70,8 +70,8 @@
     <div class="blog-masthead">
       <div class="container">
         <nav class="blog-nav">
-          <a class="blog-nav-item active" href="home.jsp">Home</a>
-          <a class="blog-nav-item" href="archive.jsp">Archive</a>
+          <a class="blog-nav-item" href="home.jsp">Home</a>
+          <a class="blog-nav-item active" href="archive.jsp">Archive</a>
           <%
 			UserService userService = UserServiceFactory.getUserService();
 
@@ -92,37 +92,28 @@
     <div class="container">
 
       <div class="blog-header">
-        <h1 class="blog-title">Welcome!</h1>
+        <h1 class="blog-title">All posts</h1>
       </div>
 
       <div class="row">
 
         <div class="col-sm-8 blog-main">
-        
-        <a href="newpost.jsp"><button type="button" class="btn btn-lg btn-primary">New post</button></a>
-		<%
-			ObjectifyService.register(BlogPost.class);
-			List<BlogPost> posts = ObjectifyService.ofy().load().type(BlogPost.class).list();
-			Collections.sort(posts);
-			Collections.reverse(posts);
-			if(posts.size() >= 5){
-				posts = posts.subList(0, 5);
-			}
-			for(BlogPost post : posts){ %>
+
+<%
+	ObjectifyService.register(BlogPost.class);
+	List<BlogPost> posts = ObjectifyService.ofy().load().type(BlogPost.class).list();
+	Collections.sort(posts);
+	Collections.reverse(posts);
+	for(BlogPost post : posts){ %>
           <div class="blog-post">
             <h2 class="blog-post-title"><%=post.getTitle()%></h2>
-    	<p class="blog-post-meta"><%=post.getDate()%> by <%=post.getUser()%> </p>
+            <p class="blog-post-meta"><%=post.getDate()%> by <%=post.getUser()%></p>
             <p><%=post.getContent()%></p>
           </div><!-- /.blog-post -->
        	<% } %>
         </div><!-- /.blog-main -->
 
         <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
-        		<form action="/subscribe.jsp" method="post">
-			<label>email: <input type="text" name="email"/></label>
-			<button class="button" type="submit" class="btn btn-lg btn-primary">Subscribe</button>
-		</form>
-        
           <div class="sidebar-module sidebar-module-inset">
             <h4>About</h4>
             <p>The domestic cat (Latin: Felis catus) is a small, typically furry, carnivorous mammal. They are often called house cats when kept as indoor pets or simply cats when there is no need to distinguish them from other felids and felines. Cats are often valued by humans for companionship and for their ability to hunt vermin. There are more than 70 cat breeds, though different associations proclaim different numbers according to their standards.</p>
