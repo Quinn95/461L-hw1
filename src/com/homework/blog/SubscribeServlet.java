@@ -13,6 +13,8 @@ import java.io.IOException;
 
 import java.util.Date;
 
+import com.homework.blog.UserC;
+
 import static com.googlecode.objectify.ObjectifyService.ofy;
  
 
@@ -24,38 +26,19 @@ import javax.servlet.http.HttpServletResponse;
 
 
 import org.apache.commons.lang3.StringEscapeUtils;
-
-
+import org.apache.http.client.protocol.ResponseContentEncoding;
 
 @SuppressWarnings("serial")
-public class NewBlogPostServlet extends HttpServlet {
-	static{
-		ObjectifyService.register(UserC.class);
-		ObjectifyService.register(BlogPost.class);
-	}
-	
+public class SubscribeServlet extends HttpServlet {
 	public void doPost(HttpServletRequest req, HttpServletResponse resp)
-				throws IOException{
-		UserService userService = UserServiceFactory.getUserService();
-		User user = userService.getCurrentUser();
+			throws IOException{
+		String email = req.getParameter("email");
 		
+		UserC user = new UserC(email);
 		
-		String title = req.getParameter("post_title");
-		String body = req.getParameter("post_body");
-		String escaped = StringEscapeUtils.escapeHtml4(body);
-		escaped = escaped.replace("\n", "<br />");
+		ofy().save().entities(user).now();
 		
-		BlogPost post = new BlogPost(user, title, escaped);
-		
-		
-		ofy().save().entities(post).now();
-		/*
-		try {
-			Thread.sleep(1500);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} */
 		resp.sendRedirect("/home.jsp");
+		
 	}
 }

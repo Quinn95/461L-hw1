@@ -35,8 +35,8 @@ public class BlogPost implements Comparable<BlogPost> {
         return 0;
 	}
 	
-	public User getUser(){
-		return user;
+	public String getUser(){
+		return user.getNickname();
 	}
 	
 	public String getTitle(){

@@ -22,6 +22,8 @@
 
 <%@ page import="com.google.appengine.api.datastore.KeyFactory" %>
 
+<%@ page import="com.googlecode.objectify.*" %>
+
 <%@ page import="com.homework.blog.BlogPost" %>
 
 <%@ page import="java.util.Collections" %>
@@ -75,14 +77,6 @@
     }
 %>
 
-<%
-	DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-	
-	Query query = new Query("BlogPost").addSort("date", Query.SortDirection.DESCENDING);
-
-	List<Entity> posts = datastore.prepare(query).asList(FetchOptions.Builder.withLimit(Integer.MAX_VALUE));
-	pageContext.setAttribute("posts", posts);
-%>
 
 <div class="container">
 
@@ -94,15 +88,22 @@
 
       <div class="col-sm-8 blog-main">
 
-
-<c:forEach var="post" items="${posts}">
-    <div class="blog-post" style="background-color: #ffffbb;">
-    <h2 class="blog-post-title">${fn:escapeXml(post.properties.title)}</h2>
-    <p class="blog-post-meta">${post.properties.date} by ${post.properties.user}</p><br />
-    <p>${post.properties.content}</p>
-    <% //<a href="detail.jsp?name=${post.properties.title}">continue reading</a> %>
-    </div>
-</c:forEach>
+<%
+	ObjectifyService.register(BlogPost.class);
+	List<BlogPost> posts = ObjectifyService.ofy().load().type(BlogPost.class).list();
+	Collections.sort(posts);
+	Collections.reverse(posts);
+	%>
+	
+	
+	<%
+	for(BlogPost post : posts){ %>
+    	<div class="blog-post">
+    	<h2 class="blog-post-title"><%=post.getTitle()%></h2>
+    	<p class="blog-post-meta"><%=post.getDate()%> by <%=post.getUser()%> </p>
+    	<p><%=post.getContent()%></p>
+    	</div>
+<% } %>
 </div>
 </div>
 
