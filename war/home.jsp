@@ -44,23 +44,15 @@
     <meta name="author" content="">
     <link rel="icon" href="favicon.ico">
 
-    <title>Blog Template for Bootstrap</title>
+    <title>Cat blog!</title>
 
     <!-- Bootstrap core CSS -->
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <link href="bootstrap//assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
     <link href="blog.css" rel="stylesheet">
 
 
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
   </head>
 
 
@@ -118,9 +110,9 @@
         </div><!-- /.blog-main -->
 
         <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
-        		<form action="/subscribe.jsp" method="post">
+        		<form action="/subscribe" method="post">
 			<label>email: <input type="text" name="email"/></label>
-			<button class="button" type="submit" class="btn btn-lg btn-primary">Subscribe</button>
+			<button class="button" type="submit" class="btn btn-lg btn-primary">Subscribe/Unsubscribe</button>
 		</form>
         
           <div class="sidebar-module sidebar-module-inset">
@@ -154,13 +146,7 @@
     </footer>
 
 
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
-    <script src="../../dist/js/bootstrap.min.js"></script>
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
   </body>
+  <script src="bootstrap/js/bootstrap.min.js"></script>
+  
 </html>

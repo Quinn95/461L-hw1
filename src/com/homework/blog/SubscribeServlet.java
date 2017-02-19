@@ -12,6 +12,7 @@ import com.googlecode.objectify.ObjectifyService;
 import java.io.IOException;
 
 import java.util.Date;
+import java.util.List;
 
 import com.homework.blog.UserC;
 
@@ -30,15 +31,31 @@ import org.apache.http.client.protocol.ResponseContentEncoding;
 
 @SuppressWarnings("serial")
 public class SubscribeServlet extends HttpServlet {
+	static{
+		ObjectifyService.register(UserC.class);
+		ObjectifyService.register(BlogPost.class);
+	}
 	public void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws IOException{
+		
+		List<UserC> users = ofy().load().type(UserC.class).list();
+		
 		String email = req.getParameter("email");
+		
+		for(UserC user : users){
+			if(user.getName().equals(email)){
+				ofy().delete().entities(ObjectifyService.ofy().load().type(UserC.class).filter("name", email).list()).now();
+				resp.sendRedirect("/unsubscribe.jsp");
+				return;
+			}
+		}
+		
 		
 		UserC user = new UserC(email);
 		
 		ofy().save().entities(user).now();
 		
-		resp.sendRedirect("/home.jsp");
+		resp.sendRedirect("/subscribed.jsp");
 		
 	}
 }

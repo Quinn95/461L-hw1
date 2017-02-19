@@ -3,6 +3,6 @@
 	<cron>
 		<url>/cron</url>
 		<description>Sends monthly emails to subsribers containing recent posts</description>
-		<schedule>every 2 minutes</schedule>
+		<schedule>every day 17:00</schedule>
 	</cron>
 </cronentries>

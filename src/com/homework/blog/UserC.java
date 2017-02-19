@@ -10,7 +10,7 @@ import com.googlecode.objectify.annotation.Index;
 @Entity
 public class UserC {
 	@Id Long id;
-	String name;
+	@Index String name;
 	
 	private UserC() {}
 	
