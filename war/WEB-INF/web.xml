@@ -42,7 +42,11 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 	</servlet>
 	<servlet-mapping>
 	    <servlet-name>subscribe</servlet-name>
+<<<<<<< HEAD
 	    <url-pattern>/subscribe</url-pattern>
+=======
+	    <servlet-mapping>/subscribe</servlet-mapping>
+>>>>>>> 89e2affdab0234075558620832c5cafb13b6ba04
 	</servlet-mapping>
 	
 	<welcome-file-list>

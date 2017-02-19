@@ -43,10 +43,16 @@ public class NewBlogPostServlet extends HttpServlet {
 		String title = req.getParameter("post_title");
 		String body = req.getParameter("post_body");
 		String escaped = StringEscapeUtils.escapeHtml4(body);
+<<<<<<< HEAD
 		String escapeTitle = StringEscapeUtils.escapeHtml4(title);
 		escaped = escaped.replace("\n", "<br />");
 		
 		BlogPost post = new BlogPost(user, escapeTitle, escaped);
+=======
+		escaped = escaped.replace("\n", "<br />");
+		
+		BlogPost post = new BlogPost(user, title, escaped);
+>>>>>>> 89e2affdab0234075558620832c5cafb13b6ba04
 		
 		
 		ofy().save().entities(post).now();

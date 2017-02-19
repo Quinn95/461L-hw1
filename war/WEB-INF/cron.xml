@@ -3,6 +3,10 @@
 	<cron>
 		<url>/cron</url>
 		<description>Sends monthly emails to subsribers containing recent posts</description>
+<<<<<<< HEAD
 		<schedule>every day 17:00</schedule>
+=======
+		<schedule>every 2 minutes</schedule>
+>>>>>>> 89e2affdab0234075558620832c5cafb13b6ba04
 	</cron>
 </cronentries>

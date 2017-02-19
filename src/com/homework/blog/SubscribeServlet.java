@@ -12,7 +12,10 @@ import com.googlecode.objectify.ObjectifyService;
 import java.io.IOException;
 
 import java.util.Date;
+<<<<<<< HEAD
 import java.util.List;
+=======
+>>>>>>> 89e2affdab0234075558620832c5cafb13b6ba04
 
 import com.homework.blog.UserC;
 
@@ -31,6 +34,7 @@ import org.apache.http.client.protocol.ResponseContentEncoding;
 
 @SuppressWarnings("serial")
 public class SubscribeServlet extends HttpServlet {
+<<<<<<< HEAD
 	static{
 		ObjectifyService.register(UserC.class);
 		ObjectifyService.register(BlogPost.class);
@@ -51,11 +55,21 @@ public class SubscribeServlet extends HttpServlet {
 		}
 		
 		
+=======
+	public void doPost(HttpServletRequest req, HttpServletResponse resp)
+			throws IOException{
+		String email = req.getParameter("email");
+		
+>>>>>>> 89e2affdab0234075558620832c5cafb13b6ba04
 		UserC user = new UserC(email);
 		
 		ofy().save().entities(user).now();
 		
+<<<<<<< HEAD
 		resp.sendRedirect("/subscribed.jsp");
+=======
+		resp.sendRedirect("/home.jsp");
+>>>>>>> 89e2affdab0234075558620832c5cafb13b6ba04
 		
 	}
 }
